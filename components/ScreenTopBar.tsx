@@ -15,7 +15,12 @@ type ScreenTopBarProps = {
 export function ScreenTopBar(props: ScreenTopBarProps) {
   return (
     <View style={props.topBarStyle}>
-      <Pressable onPress={() => router.back()} style={props.iconButtonStyle}>
+      <Pressable
+        onPress={() => router.back()}
+        style={props.iconButtonStyle}
+        accessibilityRole="button"
+        accessibilityLabel="Go back"
+      >
         <Ionicons name="arrow-back" size={20} color={props.color} />
       </Pressable>
       <Text style={props.titleStyle}>{props.title}</Text>
