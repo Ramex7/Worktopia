@@ -106,7 +106,9 @@ export default function CandidatesScreen() {
         </ScrollView>
 
         <View style={styles.resultsHeader}>
-          <Text style={styles.resultsTitle}>{visibleCandidates.length} candidates</Text>
+          <Text style={styles.resultsTitle}>
+            {visibleCandidates.length} {visibleCandidates.length === 1 ? 'candidate' : 'candidates'}
+          </Text>
           <Text style={styles.resultsHint}>Placeholder profiles</Text>
         </View>
 
@@ -142,7 +144,7 @@ export default function CandidatesScreen() {
 
             <View style={styles.cardFooter}>
               <Text style={styles.footerText}>
-                {candidate.posts.length} posts | {candidate.certificates.length} certificates
+                {candidate.posts.length} {candidate.posts.length === 1 ? 'post' : 'posts'} | {candidate.certificates.length} {candidate.certificates.length === 1 ? 'certificate' : 'certificates'}
               </Text>
               <Pressable
                 onPress={() => openCandidateProfile(candidate.id)}
