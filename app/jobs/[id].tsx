@@ -1,6 +1,6 @@
 import { Stack, router, useLocalSearchParams } from "expo-router";
 import type { ReactNode } from "react";
-import { Pressable, ScrollView, Text, View, useColorScheme } from "react-native";
+import { Alert, Pressable, ScrollView, Text, View, useColorScheme } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 import { ScreenTopBar } from "../../components/ScreenTopBar";
@@ -13,6 +13,10 @@ export default function JobProfileScreen() {
   const styles = createJobProfileStyles(colors);
   const params = useLocalSearchParams<{ id?: string }>();
   const job = jobs.find((item) => item.id === params.id);
+
+  function handleApply() {
+    Alert.alert("Apply", "This is a placeholder action. Application functionality not yet implemented.");
+  }
 
   if (!job) {
     return (
@@ -115,7 +119,7 @@ export default function JobProfileScreen() {
             <Text style={styles.bottomMetaTitle}>Ready to apply?</Text>
             <Text style={styles.bottomMetaText}>Placeholder action only</Text>
           </View>
-          <Pressable style={styles.primaryButton}>
+          <Pressable onPress={handleApply} style={styles.primaryButton}>
             <Text style={styles.primaryButtonText}>Apply</Text>
           </Pressable>
         </View>

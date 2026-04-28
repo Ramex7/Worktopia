@@ -66,10 +66,10 @@ export default function CandidatesScreen() {
               style={styles.searchInput}
             />
           </View>
-          <Pressable style={styles.filterButton}>
+          <View style={styles.filterButton}>
             <Ionicons name="options-outline" size={18} color={colors.text} />
             <Text style={styles.filterButtonText}>Filter</Text>
-          </Pressable>
+          </View>
         </View>
 
         <ScrollView
