@@ -11,7 +11,7 @@ import {
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
-import { candidateFilters, candidates } from "../../data/candidates";
+import { candidates } from "../../data/candidates";
 import { createCandidatesStyles } from "../../styles/candidatesStyles";
 import { getThemeColors } from "../../styles/theme";
 import { getInitials } from "../../utils/text";
@@ -21,6 +21,10 @@ export default function CandidatesScreen() {
   const styles = createCandidatesStyles(colors);
   const [searchQuery, setSearchQuery] = useState("");
   const [activeFilter, setActiveFilter] = useState("All");
+
+  const uniqueChips = useMemo(() => {
+    return ["All", ...Array.from(new Set(candidates.flatMap(c => c.filters)))];
+  }, []);
 
   function openCandidateProfile(id: string) {
     router.push({
@@ -47,7 +51,7 @@ export default function CandidatesScreen() {
 
   return (
     <SafeAreaView style={styles.screen} edges={["left", "right"]}>
-      <ScrollView contentContainerStyle={styles.content} showsVerticalScrollIndicator={false}>
+      <ScrollView contentContainerStyle={styles.content} showsVerticalScrollIndicator={false} keyboardShouldPersistTaps="handled">
         <View style={styles.header}>
           <Text style={styles.title}>Candidates</Text>
           <Text style={styles.subtitle}>
@@ -76,8 +80,9 @@ export default function CandidatesScreen() {
           horizontal
           showsHorizontalScrollIndicator={false}
           contentContainerStyle={styles.filterRow}
+          keyboardShouldPersistTaps="handled"
         >
-          {candidateFilters.map((filter) => {
+          {uniqueChips.map((filter) => {
             const selected = filter === activeFilter;
 
             return (
